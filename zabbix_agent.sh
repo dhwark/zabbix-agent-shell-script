@@ -1,10 +1,10 @@
 #/bin/bash
 #author:CaptainValk 
 #mail:alvinharris@foxmail.com
-#此脚本为zabbix agent安装脚本
 
 
 echo ----- step01 下载解压zabbix_agent -----
+#加入伪进度条方便定位出现错误的位置
 
 useradd zabbix
 cd /home/zabbix
@@ -43,4 +43,5 @@ touch  /tmp/zabbix_agentd.pid
 chmod 777 /tmp/zabbix_agentd.pid
 /etc/init.d/zabbix_agentd
 ps -ef | grep zabbix_agentd
+
 echo ----- step 05 100% -----
