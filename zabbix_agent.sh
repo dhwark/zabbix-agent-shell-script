@@ -13,7 +13,7 @@ tar -zxf zabbix_agent-5.0.22-linux-3.0-amd64-static.tar.gz
 cd /home/zabbix/bin
 ln -s zabbix_sender zabbix_get /usr/bin
 cd ../sbin
-ln -s zabbix_agentd /usr/s:bin/
+ln -s zabbix_agentd /usr/sbin/
 
 echo ----- step02 修改配置文件 -----
 
