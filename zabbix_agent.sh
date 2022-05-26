@@ -2,7 +2,6 @@
 #author:CaptainValk 
 #mail:alvinharris@foxmail.com
 
-
 echo ----- step01 下载解压zabbix_agent -----
 #加入伪进度条方便定位出现错误的位置
 
@@ -19,21 +18,23 @@ echo ----- step02 修改配置文件 -----
 
 cd /home/zabbix/conf
 
-sed -i 's#LogFile=/tmp/zabbix_agentd.log#LogFile=/var/log/zabbix/zabbix_agentd.log#' /home/zabbix/conf/zabbix_agentd.conf
-sed -i 's#Server=127.0.0.1#Server=hostip#' /home/zabbix/conf/zabbix_agentd.conf
-sed -i 's#ServerActive=127.0.0.1#Server=hostip#' /home/zabbix/conf/zabbix_agentd.conf
-sed -i 's#Hostname=Zabbix server#Hostname='"${HOSTNAME}"'#' /home/zabbix/conf/zabbix_agentd.conf
-
-echo ----- step 03 70% -----
-
+sed -i 's#LogFile=/tmp/zabbix_agentd.log#LogFile=/var/log/zabbix/zabbix_agentd.log#' ./zabbix_agentd.conf
+sed -i 's#Server=127.0.0.1#Server=hostip#' ./zabbix_agentd.conf
+sed -i 's#ServerActive=127.0.0.1#Server=hostip#' ./zabbix_agentd.conf
+sed -i 's#Hostname=localhost.localdomain#Hostname='"${HOSTNAME}"'#' ./zabbix_agentd.conf
+sed -i '303s#\# Include=# Include=/usr/local/conf/zabbix_agentd/*.conf#' ./zabbix_agentd.conf
+#使其包含此目录下所有自定义监控项的*.conf结尾文件
 cp zabbix_agentd.conf  /usr/local/etc/
+
+echo ----- step 03 创建日志保存文件 -----
+
 mkdir /var/log/zabbix/
 chown zabbix:zabbix /var/log/zabbix/
 chmod 777 /var/log/zabbix/
 touch  /var/log/zabbix/zabbix_agentd.log
 chmod 777 /var/log/zabbix/zabbix_agentd.log
 
-echo ----- step 04 90% -----
+echo ----- step 04 复制启动文件修改权限 -----
 
 echo "zabbix_agent 10050/tcp" >>/etc/services
 echo "zabbix_agent 10050/udp" >>/etc/services
