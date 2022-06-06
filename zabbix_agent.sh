@@ -46,3 +46,4 @@ chmod 777 /tmp/zabbix_agentd.pid
 ps -ef | grep zabbix_agentd
 
 echo ----- step 05 100% -----
+
