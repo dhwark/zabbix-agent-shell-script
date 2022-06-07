@@ -1,4 +1,5 @@
-#/bin/bash
+
+#!/bin/bash
 #author:CaptainValk 
 #mail:alvinharris@foxmail.com
 
@@ -22,7 +23,7 @@ sed -i 's#LogFile=/tmp/zabbix_agentd.log#LogFile=/var/log/zabbix/zabbix_agentd.l
 sed -i 's#Server=127.0.0.1#Server=hostip#' ./zabbix_agentd.conf
 sed -i 's#ServerActive=127.0.0.1#Server=hostip#' ./zabbix_agentd.conf
 sed -i 's#Hostname=localhost.localdomain#Hostname='"${HOSTNAME}"'#' ./zabbix_agentd.conf
-sed -i '303s#\# Include=# Include=/usr/local/conf/zabbix_agentd/*.conf#' ./zabbix_agentd.conf
+sed -i "303a Include=/usr/local/conf/zabbix_agentd/*.conf" ./zabbix_agentd.conf
 #使其包含此目录下所有自定义监控项的*.conf结尾文件
 cp zabbix_agentd.conf  /usr/local/etc/
 
@@ -46,4 +47,3 @@ chmod 777 /tmp/zabbix_agentd.pid
 ps -ef | grep zabbix_agentd
 
 echo ----- step 05 100% -----
-
