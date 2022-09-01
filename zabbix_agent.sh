@@ -1,7 +1,7 @@
 
 #!/bin/bash
 #author:CaptainValk 
-#mail:alvinharris@foxmail.com
+#mail:jevinharris@foxmail.com
 
 echo ----- step01 下载解压zabbix_agent -----
 #加入伪进度条方便定位出现错误的位置
